@@ -1,0 +1,41 @@
+import pandas as pd
+
+orders = pd.read_csv("orders.csv")
+products = pd.read_csv("products.csv")
+returns = pd.read_csv("returns.csv")
+prices = pd.read_csv("price_history.csv")
+costs = pd.read_csv("cost_history.csv")
+marketing = pd.read_csv("marketing_spend.csv")
+
+print("\n--- RETURNS AUDIT ---")
+print("Total returns:", len(returns))
+print("Duplicate return IDs:", returns["return_id"].duplicated().sum())
+print("Missing order references:", (~returns["order_id"].isin(orders["order_id"])).sum())
+print("Missing product references:", (~returns["sku"].isin(products["sku"])).sum())
+print("Zero/negative returned quantities:", (returns["qty_returned"] <= 0).sum())
+print("Negative refunds:", (returns["refund_amount"] < 0).sum())
+print("\nReturn reasons:")
+print(returns["reason"].value_counts())
+
+print("\n--- PRICE HISTORY AUDIT ---")
+print("Rows:", len(prices))
+print("Missing product references:", (~prices["sku"].isin(products["sku"])).sum())
+print("Duplicate SKU + effective date:", prices.duplicated(["sku", "effective_from"]).sum())
+print("Non-positive prices:", (prices["list_price"] <= 0).sum())
+
+print("\n--- COST HISTORY AUDIT ---")
+print("Rows:", len(costs))
+print("Missing product references:", (~costs["sku"].isin(products["sku"])).sum())
+print("Duplicate SKU + effective date:", costs.duplicated(["sku", "effective_from"]).sum())
+print("Non-positive costs:", (costs["unit_cost"] <= 0).sum())
+
+print("\n--- MARKETING SPEND AUDIT ---")
+print("Rows:", len(marketing))
+print("\nUnits:")
+print(marketing["unit"].value_counts())
+print("\nChannels:")
+print(marketing["channel"].value_counts())
+print("\nSpend by unit:")
+print(marketing.groupby("unit")["spend"].agg(["count", "min", "max", "sum"]))
+
+print("\n--- COMPLETED ---")

@@ -1,0 +1,14 @@
+id,question,your_answer
+Q1,Duplicate order rows found in orders.csv,99 exact duplicate order rows found and removed.
+Q2,Test orders found,Internal test orders could not be reliably identified from the available data. No customer or order was conclusively confirmed as an internal test account.
+Q3,Genuine orders after cleaning (all statuses),"12,213 unique order records after removing 99 exact duplicate rows. All statuses retained; test orders could not be independently identified."
+Q4,Date the free-shipping threshold changed (YYYY-MM-DD),2025-08-11 (inferred from transaction patterns; formal policy change date not independently confirmed).
+Q5,Free-shipping threshold before and after the change (Rs),Approximately Rs 499 before and Rs 799-800 after (inferred from transaction patterns; formal policy thresholds not independently confirmed).
+Q6,"Category whose unit cost increased, and by what %","Appliances unit costs increased by 26.00%, effective 2026-03-01 across 12 SKUs."
+Q7,Net revenue (Rs) in the month the CFO names,1446688.10
+Q8,"CM (Rs) in the month before, and in the month the CFO names",February 2026: Rs 596481.39; March 2026: Rs 596273.27.
+Q9,Problem city for COD; COD RTO rate there vs the rest of India (%),Kolkata: 31.02% (112/361); rest of India: 8.75% (314/3589).
+Q10,Device ID shared by the abusive accounts; number of accounts,"DV-6CA61D7A, shared by 41 customer accounts."
+Q11,Total CM (Rs) of all orders placed by the abusive accounts,-70267.69
+Q12,Festive campaign contribution (Rs),-297991.41
+Q13,"Marketing's ROAS figure, recomputed: which numerator and denominator produce it?",GMV of Rs 1951222.95 divided by festive campaign marketing spend of Rs 519908 produces 3.75x ROAS.
